@@ -1,0 +1,11 @@
+[package]
+name = "solana-poc"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.86"
+solana-client = "2.0.2"
+spl-token = "6.0.0"
