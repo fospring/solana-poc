@@ -45,7 +45,7 @@ fn send_hello_tx(
 
 fn main() -> anyhow::Result<()> {
     let rpc_client = RpcClient::new("http://127.0.0.1:8899");
-    let program_id = Pubkey::from_str("24bUpv6ppELeWpwkhwwefm5V9Dd2RobqQvuQ1YWDA7qn")?;
+    let program_id = Pubkey::from_str("Hop5JPRNK77KsGFAqn5iCExYBYPF3jn2dPV2k1sEFK3y")?;
     let key_pair = read_keypair_file("/Users/qiuyongchun/.config/solana/id.json").map_err(|err| {
         anyhow::anyhow!("read key pair error: {:?}", err)
     })?;

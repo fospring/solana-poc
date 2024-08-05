@@ -6,3 +6,8 @@ https://solana.com/developers/guides/getstarted/local-rust-hello-world
 ```
 cargo build-bpf
 ```
+
+## deploy
+```
+solana program deploy ./target/deploy/hello_world.so
+```
