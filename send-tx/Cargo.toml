@@ -8,5 +8,5 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.86"
 borsh = "1.5.1"
-solana-rpc-client = "1.18.18"
-solana-sdk = "1.18.18"
+solana-rpc-client = "2.0.4"
+solana-sdk = "2.0.4"
