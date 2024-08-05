@@ -1,5 +1,8 @@
 use solana_client::rpc_client::RpcClient;
-use spl_token::{solana_program::{program_pack::Pack, pubkey::Pubkey}, state::Account as SplAccount};
+use spl_token::{
+    solana_program::{program_pack::Pack, pubkey::Pubkey},
+    state::Account as SplAccount,
+};
 use std::str::FromStr;
 
 fn main() -> anyhow::Result<()> {

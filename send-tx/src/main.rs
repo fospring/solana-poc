@@ -1,14 +1,14 @@
-use std::{str::FromStr};
+use std::str::FromStr;
 
 use anyhow::Result;
-use borsh::{BorshSerialize, BorshDeserialize};
+use borsh::{BorshDeserialize, BorshSerialize};
 use solana_rpc_client::rpc_client::RpcClient;
 use solana_sdk::{
-     instruction::Instruction,
-     pubkey::Pubkey,
-     signature::{Keypair, Signer},
-     transaction::Transaction,
-     signature::read_keypair_file,
+    instruction::Instruction,
+    pubkey::Pubkey,
+    signature::read_keypair_file,
+    signature::{Keypair, Signer},
+    transaction::Transaction,
 };
 // A custom program instruction. This would typically be defined in
 // another crate so it can be shared between the on-chain program and
@@ -20,17 +20,9 @@ enum BankInstruction {
     Withdraw { lamports: u64 },
 }
 
-fn send_hello_tx(
-    client: &RpcClient,
-    program_id: Pubkey,
-    payer: &Keypair
-) -> Result<()> {
+fn send_hello_tx(client: &RpcClient, program_id: Pubkey, payer: &Keypair) -> Result<()> {
     let bank_instruction = BankInstruction::Initialize;
-    let instruction = Instruction::new_with_borsh(
-        program_id,
-        &bank_instruction,
-        vec![],
-    );
+    let instruction = Instruction::new_with_borsh(program_id, &bank_instruction, vec![]);
     let blockhash = client.get_latest_blockhash()?;
     let tx = Transaction::new_signed_with_payer(
         &[instruction],
@@ -46,13 +38,8 @@ fn send_hello_tx(
 fn main() -> anyhow::Result<()> {
     let rpc_client = RpcClient::new("http://127.0.0.1:8899");
     let program_id = Pubkey::from_str("Hop5JPRNK77KsGFAqn5iCExYBYPF3jn2dPV2k1sEFK3y")?;
-    let key_pair = read_keypair_file("/Users/qiuyongchun/.config/solana/id.json").map_err(|err| {
-        anyhow::anyhow!("read key pair error: {:?}", err)
-    })?;
-    send_hello_tx(
-        &rpc_client,
-        program_id,
-        &key_pair,
-    )?;
+    let key_pair = read_keypair_file("/Users/qiuyongchun/.config/solana/id.json")
+        .map_err(|err| anyhow::anyhow!("read key pair error: {:?}", err))?;
+    send_hello_tx(&rpc_client, program_id, &key_pair)?;
     Ok(())
 }
