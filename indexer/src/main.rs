@@ -22,7 +22,8 @@ fn main() {
     let mut counter = 0;
     loop {
         let data = reciver.recv().unwrap();
-        println!("data: {:?}", data);
+        println!("is_err: {}, signature: {}, logs: {:?}", data.value.err.is_some(),data.value.signature.clone(), data.value.logs);
+
         counter += 1;
         if counter > 2 {
             break;
