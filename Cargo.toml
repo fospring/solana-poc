@@ -1,2 +1,2 @@
 [workspace]
-members = ["query-account", "send-tx", "hello_world", "indexer"]
+members = ["query-account", "send-tx", "hello_world", "sol-indexer"]
