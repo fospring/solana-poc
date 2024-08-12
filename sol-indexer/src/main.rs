@@ -159,6 +159,10 @@ mod tests {
     use super::AccountWithdrawSol;
     use anchor_lang::AnchorDeserialize;
     use base64::prelude::*;
+    use solana_client::rpc_client::RpcClient;
+    use solana_sdk::signature::Signature;
+    use solana_transaction_status::UiTransactionEncoding;
+    use std::str::FromStr;
 
     #[test]
     fn test_account_withdraw_sol_decode() {
@@ -193,5 +197,17 @@ mod tests {
             "discriminator: {}, withdraw data: {:?}",
             discriminator, withdraw
         );
+    }
+
+    #[ignore]
+    #[test]
+    fn test_get_transaction() {
+        let url = "https://api.devnet.solana.com".to_string();
+        let signature = Signature::from_str("3njCSYscVEoJiBmm9TtaYoxi29oHFKZa5ggyCek6JvFaRAiEBLMb3F5x8XZnsBB3zGuPirFaZacRue5Mo7rjq37a").unwrap();
+        let client = RpcClient::new(url);
+        let tx = client
+            .get_transaction(&signature, UiTransactionEncoding::Json)
+            .unwrap();
+        println!("tx={:?}", tx);
     }
 }
